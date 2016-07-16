@@ -7,6 +7,9 @@ import java.text.DecimalFormat;
 @author Jesse Gonzalez
 */
 
+/**
+   SubClass
+ */
 public class Movie implements Serializable {
 	
   private int sku;			//holds the SKU of the movie
