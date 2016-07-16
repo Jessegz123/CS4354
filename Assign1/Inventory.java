@@ -1,4 +1,4 @@
-package Store;
+package store;
 
 import java.io.*;
 import java.util.*;
@@ -9,18 +9,18 @@ import java.util.*;
 */
 
 public class Inventory {
-  private  List<MovieInformation> movies;
+  private  List<Movie> movies;
 
   /**
   * Opens a file and creates a movie inventory ListArru
   */
-  public MovieInventory() {
-    movies=new ArrayList<MovieInformation>();
+  public Inventory() {
+    movies = new ArrayList<Movie>();
   
     try {
       FileInputStream fin = new FileInputStream("inventory");
 	    ObjectInputStream ois = new ObjectInputStream(fin);
-	    movies = (ArrayList<MovieInformation>)ois.readObject(); 
+	    movies = (ArrayList<Movie>)ois.readObject(); 
 	    fin.close();
     } catch (FileNotFoundException e) {
 	  System.out.println("Cannot find datafile.");
@@ -50,13 +50,13 @@ public class Inventory {
   * @param information about the movie, sku, quanity, price and title
   */
   void addMovie(int sku, int quantity, double price, String title) {
-	  for (MovieInformation m : movies){		//m declares a movie object
+	  for (Movie m : movies){		//m declares a movie object
 	    if (sku == m.getSku() || quantity < 0 || price < 0 ) {
 	      System.out.println("Invalid input.");
 	      return;
 	    }
 	  }
-	  MovieInformation newMovie = new MovieInformation(sku, quantity, price, title);
+	  Movie newMovie = new Movie(sku, quantity, price, title);
 	  movies.add(newMovie);
 	  System.out.print("\n");
   }
@@ -66,7 +66,7 @@ public class Inventory {
   * @param sku to be removed
   */
   void removeMovie(int removeSku) {
-    for(MovieInformation m : movies){		//m declares a movie object
+    for(Movie m : movies){		//m declares a movie object
       if(m.getSku() == removeSku){
         movies.remove(m);
         System.out.println("Movie removed.");
@@ -81,7 +81,7 @@ public class Inventory {
   * @param the SKU of the selected movie
   */
   void displayMovieInfo(int displaySku){
-    for(MovieInformation m : movies){    //m declares a movie object
+    for(Movie m : movies){    //m declares a movie object
       if(m.getSku() == displaySku){
         String display = m.display();    //display is a holder for the string returned
 	    System.out.println(display);    //from the displayMovie function
@@ -96,11 +96,12 @@ public class Inventory {
   * Displays all the movies in the MovieInventory
   */
   void displayAllMovies(){
-    for(MovieInformation m : movies){    //m declares a movie object
+    for(Movie m : movies){    //m declares a movie object
       String display=m.display();    //display is a holder for the string returned
 	    System.out.println(display);    //from the displayMovie function
 	  }
 	  System.out.print("\n");
   }
 }
+
 
