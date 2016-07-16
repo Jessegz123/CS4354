@@ -22,7 +22,7 @@ public class Movie implements Serializable {
   * title
   * @return none
   */
-  public MovieInformation(int sku, int quantity, double price, String title){
+  public Movie(int sku, int quantity, double price, String title){
     this.sku = sku;
     this.quantity = quantity;
 	  this.price = price;
