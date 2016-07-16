@@ -30,22 +30,19 @@ public class Driver {
 		      
 	  if (choice == 1) {
 	    System.out.println("Add a Product (Enter M for Movie, B for book, or T for Toy:");
-	    int item = input.nextLine();
+	    String item = input.nextLine();
 	    
 	    inventory.addProduct(item);
 	  }
       /*if (choice == 1) {
 	    System.out.println("SKU:");
 	    int sku = input.nextInt();			//declare SKU
-
         System.out.println ("Quantity");
 	    int quantity= input.nextInt();		//declare quantity
-
 	    System.out.print ("Price: \n");
 	    double price = input.nextDouble();  //declare price
 	    
 	    input.nextLine();
-
 	    System.out.println ("Title: ");
 	    String title = input.nextLine();		//declare title
 					
@@ -76,6 +73,4 @@ public class Driver {
     System.out.print("Program Ended");
   }	
 }
-
-
 
