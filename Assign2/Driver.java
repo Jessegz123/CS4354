@@ -23,7 +23,8 @@ public class Driver {
 	  System.out.print("2. Remove a product from the inventory \n");
 	  System.out.print("3. Display the information for a product \n");
 	  System.out.print("4. Display the inventory in a table \n");
-	  System.out.print("5. Quit \n\n");
+	  System.out.print("5. Process a sale \n");
+	  System.out.print("6. Quit \n\n");
 	  System.out.print("Enter your choice: \n");
 	  
 	  choice = input.nextInt();
@@ -57,7 +58,7 @@ public class Driver {
         inventory.removeProduct(removeSku);
       }
     
-          if (choice == 3) {
+	  if (choice == 3) {
 	    //Scanner input = new Scanner (System.in);
 	    System.out.print("Enter SKU to display: \n");
 	    int displaySku = input.nextInt();		//declare SKU to pass as parameter
@@ -67,7 +68,17 @@ public class Driver {
 	  if (choice == 4) {
 	    inventory.displayAllProducts();
 	  }
-    } while (choice != 5);
+	  if (choice == 5) {
+	    System.out.println("SKU:");
+		int sku = input.nextInt();			//declare SKU
+		System.out.println ("Quantity");
+	    int quantity = input.nextInt();		//declare quantity
+	    System.out.println ("Shipping Cost");
+	    double shippingCost = input.nextDouble();		//declare quantity
+	    
+	    System.out.println (inventory.ProcessSale(sku, quantity, shippingCost));
+	  }
+    } while (choice != 6);
 
     inventory.writeToFile();
     System.out.print("Program Ended");
