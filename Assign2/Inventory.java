@@ -9,18 +9,18 @@ import java.util.*;
 */
 
 public class Inventory {
-  private  List<Movie> movies;
+  private  List<Product> items;
 
   /**
-  * Opens a file and creates a movie inventory ListArru
+  * Opens a file and creates a item inventory ListArry
   */
   public Inventory() {
-    movies = new ArrayList<Movie>();
+    items = new ArrayList<Product>();
   
     try {
-      FileInputStream fin = new FileInputStream("inventory");
+      FileInputStream fin = new FileInputStream("inventory.dat");
 	    ObjectInputStream ois = new ObjectInputStream(fin);
-	    movies = (ArrayList<Movie>)ois.readObject(); 
+	    items = (ArrayList<Product>)ois.readObject(); 
 	    fin.close();
     } catch (FileNotFoundException e) {
 	  System.out.println("Cannot find datafile.");
@@ -36,9 +36,9 @@ public class Inventory {
   */
   void writeToFile(){
     try{
-	    FileOutputStream fout = new FileOutputStream("inventory");
+	    FileOutputStream fout = new FileOutputStream("inventory.dat");
 	    ObjectOutputStream oout = new ObjectOutputStream(fout);
-	    oout.writeObject(movies);
+	    oout.writeObject(items);
 	    oout.close();
 	  }catch (IOException e){
 	    System.out.println("Problem with file output");
@@ -46,59 +46,59 @@ public class Inventory {
   }
   
   /**
-  * Adds a movie to the MovieInventory
-  * @param information about the movie, sku, quanity, price and title
+  * Adds a product to the Inventory
+  * @param information about the product, sku, quanity, price and title
   */
-  void addMovie(int sku, int quantity, double price, String title) {
-	  for (Movie m : movies){		//m declares a movie object
+  void addProduct(int sku, int quantity, double price, String title) {
+	  for (Product m : items){		//m declares a product object
 	    if (sku == m.getSku() || quantity < 0 || price < 0 ) {
 	      System.out.println("Invalid input.");
 	      return;
 	    }
 	  }
-	  Movie newMovie = new Movie(sku, quantity, price, title);
-	  movies.add(newMovie);
+	  Product newProduct = new Product(sku, quantity, price, title);
+	  items.add(newProduct);
 	  System.out.print("\n");
   }
   
   /**
-  * Removes a movie from the MovieInventory
+  * Removes a product from the Inventory
   * @param sku to be removed
   */
-  void removeMovie(int removeSku) {
-    for(Movie m : movies){		//m declares a movie object
+  void removeProduct(int removeSku) {
+    for(Product m : items){		//m declares a product object
       if(m.getSku() == removeSku){
-        movies.remove(m);
-        System.out.println("Movie removed.");
+        items.remove(m);
+        System.out.println("Product removed.");
         return;
       }
 	} 
-	System.out.print("No movie found with this SKU \n");   
+	System.out.print("No product found with this SKU \n");   
   }
 		
   /**
-  * Displays a movie selected by SKU input by the user
-  * @param the SKU of the selected movie
+  * Displays a product selected by SKU input by the user
+  * @param the SKU of the selected product
   */
-  void displayMovieInfo(int displaySku){
-    for(Movie m : movies){    //m declares a movie object
+  void displayProductInfo(int displaySku){
+    for(Product m : items){    //m declares a product object
       if(m.getSku() == displaySku){
         String display = m.display();    //display is a holder for the string returned
-	    System.out.println(display);    //from the displayMovie function
+	    System.out.println(display);    //from the display function
 	    return;
 	  }
     }
-    System.out.print("No movie found with this SKU\n");
+    System.out.print("No product found with this SKU\n");
 	System.out.print("\n");
   }
 	
   /**
-  * Displays all the movies in the MovieInventory
+  * Displays all the products in the Inventory
   */
-  void displayAllMovies(){
-    for(Movie m : movies){    //m declares a movie object
+  void displayAllProducts(){
+    for(Product m : items){    //m declares a product object
       String display=m.display();    //display is a holder for the string returned
-	    System.out.println(display);    //from the displayMovie function
+	    System.out.println(display);    //from the display function
 	  }
 	  System.out.print("\n");
   }
