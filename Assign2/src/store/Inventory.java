@@ -115,8 +115,8 @@ public class Inventory {
 	    else {
 	      int newQuantity = p.getQuantity() - quantity;
 	      p.setQuantity(newQuantity);
-	      String output =  "Total price: " + p.dfd.format(p.getPrice() * quantity) + " /n"
-	          + "Total shipping credit: " + p.getShippingCredit() * quantity + "/n" 
+	      String output =  "Total price: " + p.dfd.format(p.getPrice() * quantity) + " \n"
+	          + "Total shipping credit: " + p.getShippingCredit() * quantity + "\n" 
 	          +  "Total commission: " + p.getCommission() * quantity;
 	        return output;
 	    }
