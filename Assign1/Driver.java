@@ -1,4 +1,4 @@
-package Store;
+package store;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class Driver {
   /**
   * Creates a new movie inventory
   */
-  private static MovieInventory inventory = new MovieInventory();
+  private static Inventory inventory = new Inventory();
 
   public static void main (String [] args){
     Scanner input = new Scanner (System.in);
