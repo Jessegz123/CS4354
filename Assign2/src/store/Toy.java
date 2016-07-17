@@ -7,8 +7,12 @@ package store;
 /**
    SubClass
  */
-public class Toy{
-  private double oz;
-  private double shippingCredit; 
-  private double commission = .15;
+public class Toy extends Product {
+  private double weight;
+
+  public Toy(int sku, int quantity, double price, String title, double weight) {
+		super(sku, quantity, price, title, "Toy",(4.49+(.5*(weight/16))),0.15);
+		this.weight = weight;
+  }
+
 }

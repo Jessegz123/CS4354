@@ -28,26 +28,42 @@ public class Driver {
 	  System.out.print("Enter your choice: \n");
 	  
 	  choice = input.nextInt();
-		      
-	  /**if (choice == 1) {
-	    System.out.println("Add a Product (Enter M for Movie, B for book, or T for Toy:");
-	    String item = input.nextLine();
-	    
-	    //inventory.addProduct(item);
-	  }**/
-      if (choice == 1) {
-	    System.out.println("SKU:");
+	  input.nextLine();
+	  if (choice == 1) {
+		  
+	    System.out.println("Add a Product (Enter M for Movie, B for book, or T for Toy: )");
+	    String item = input.next();
+	    if (item.equals("M") ||item.equals("B") ||item.equals("T")){
+	  	System.out.println("SKU:");
 	    int sku = input.nextInt();			//declare SKU
         System.out.println ("Quantity");
 	    int quantity= input.nextInt();		//declare quantity
 	    System.out.print ("Price: \n");
 	    double price = input.nextDouble();  //declare price
-	    
 	    input.nextLine();
 	    System.out.println ("Title: ");
-	    String title = input.nextLine();		//declare title
-					
-	    inventory.addProduct(sku, quantity, price, title);
+	    String title = input.nextLine();	//declare title
+	       	if(item.equals("M")){
+	    		System.out.println ("UPC: ");
+	    		int upc = input.nextInt();
+	    		inventory.addMovie(sku, quantity, price, title, upc);		    
+	       		}	
+	       	else if(item.equals("B")){
+	       		System.out.println ("Author: ");
+	       		String author = input.next();
+	       		System.out.println ("ISBN: ");
+	       		int isbn = input.nextInt();		    
+		    	inventory.addBook(sku, quantity, price, title, author, isbn);
+	       	}
+			else if(item.equals("T")){
+			    System.out.println ("Weight: ");
+			    double weight = input.nextDouble();
+			    inventory.addToy(sku, quantity, price, title, weight);		    
+			}
+	    }
+		else{
+			System.out.println("Invalid entry");
+		}
 	  }
       
   
