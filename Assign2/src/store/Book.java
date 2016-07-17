@@ -7,9 +7,18 @@ package store;
 /**
    SubClass
  */
-public class Book {
-  private int isbs;
+public class Book extends Product {
+  private int isbn;
   private String author;
-  private double shippingCredit = 3.99;
-  private double commmission = .15;
+
+
+  public Book(int sku, int quantity, double price, String title, String author,
+		  int isbn) {
+		super(sku, quantity, price, title, "Book",3.99,0.15);
+		this.author = author;
+		this.isbn = isbn;
+
+		
+  }
+
 }

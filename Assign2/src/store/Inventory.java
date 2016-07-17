@@ -11,6 +11,9 @@ import java.util.*;
 public class Inventory {
   private  List<Product> items;
 
+  
+  
+
   /**
   * Opens a file and creates a item inventory ListArry
   */
@@ -46,20 +49,51 @@ public class Inventory {
   }
   
   /**
-  * Adds a product to the Inventory
-  * @param information about the product, sku, quanity, price and title
+  * Adds a movie to the Inventory
+  * @param information about the movie, sku, quanity, price and title
   */
-  void addProduct(int sku, int quantity, double price, String title) {
-	  for (Product p : items){		//p declares a product object
-	    if (sku == p.getSku() || quantity < 0 || price < 0 ) {
+  void addMovie(int sku, int quantity, double price, String title, int upc) {
+	  for (Product m : items){		//p declares a product object
+	    if (sku == m.getSku() || quantity < 0 || price < 0 || upc < 0 ) {
 	      System.out.println("Invalid input.");
 	      return;
 	    }
 	  }
-	  Product newProduct = new Product(sku, quantity, price, title);
+	  Movie newProduct = new Movie(sku, quantity, price, title, upc);
 	  items.add(newProduct);
 	  System.out.print("\n");
   }
+  /**
+   * Adds a book to the Inventory
+   * @param information about the book: sku, quantity, price, title, author, isbn
+   */
+   void addBook(int sku, int quantity, double price, String title, String author, int isbn) {
+ 	  for (Product b : items){		//b declares a product object
+ 	    if (sku == b.getSku() || quantity < 0 || price < 0 || isbn < 0 ) {
+ 	      System.out.println("Invalid input.");
+ 	      return;
+ 	    }
+ 	  }
+ 	  Book newProduct = new Book(sku, quantity, price, title, author, isbn);
+ 	  items.add(newProduct);
+ 	  System.out.print("\n");
+   }
+   
+   /**
+    * Adds a toy to the Inventory
+    * @param information about the book: sku, quantity, price, title, and weight
+    */
+    void addToy(int sku, int quantity, double price, String title,  double weight) {
+  	  for (Product t : items){		//t declares a product object
+  	    if (sku == t.getSku() || quantity < 0 || price < 0 || weight < 0 ) {
+  	      System.out.println("Invalid input.");
+  	      return;
+  	    }
+  	  }
+  	  Toy newProduct = new Toy(sku, quantity, price, title, weight);
+  	  items.add(newProduct);
+  	  System.out.print("\n");
+    }
   
   /**
   * Removes a product from the Inventory
@@ -96,7 +130,8 @@ public class Inventory {
   * Displays all the products in the Inventory
   */
   void displayAllProducts(){
-    for(Product p : items){    //p declares a product object
+	  Collections.sort(items);
+      for(Product p : items){    //p declares a product object
       String display=p.display();    //display is a holder for the string returned
 	    System.out.println(display);    //from the display function
 	  }
@@ -116,8 +151,10 @@ public class Inventory {
 	      int newQuantity = p.getQuantity() - quantity;
 	      p.setQuantity(newQuantity);
 	      String output =  "Total price: " + p.dfd.format(p.getPrice() * quantity) + " \n"
-	          + "Total shipping credit: " + p.getShippingCredit() * quantity + "\n" 
-	          +  "Total commission: " + p.getCommission() * quantity;
+	          + "Total shipping credit: " + p.dfd.format(p.getShippingCredit() * quantity) + "\n" 
+	          +  "Total commission: " + p.dfd.format(p.getCommission() * quantity) +"\n" +
+	          "Profit: "+ ((p.getPrice() * quantity)+(p.getShippingCredit() * quantity)
+	        		  -((p.getCommission() * quantity)+ shippingC ));
 	        return output;
 	    }
 	  }

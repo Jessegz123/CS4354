@@ -7,8 +7,13 @@ package store;
 /**
    SubClass
  */
-public class Movie  {
+public class Movie extends Product{
   private int upc;
-  private double shippingCredit = 2.98;
-  private double commission = .12;
+  public Movie(int sku, int quantity, double price, String title, int upc) {
+		super(sku, quantity, price, title, "Movie",2.98,0.12);
+		this.upc = upc;
+
+	}
+
+
 }
