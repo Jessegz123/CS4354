@@ -2,14 +2,13 @@ package store;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
-/**
-@author Sarah Zsohar
-@author Jesse Gonzalez
-*/
 
 /**
-   Superclass 
- */
+ * Super-Class representing a product in an inventory
+ * Stores the stock keeping unit number, the quantity, price, and title
+ * @author Sarah Zsohar
+ * @author Jesse Gonzalez
+*/
 public class Product implements Serializable, Comparable<Product> {
 	
   private int sku;			//holds the SKU of the product
@@ -20,63 +19,68 @@ public class Product implements Serializable, Comparable<Product> {
   private double shippingCredit;
   private double commission;
   DecimalFormat dfd = new DecimalFormat("$#0.00");
+  
   /**
-   * The product information information
-   * @param an int for the sku, an int for the quantity, a double for price, and a string for 
-   * title
-   * @return none
+   * Constructs product from parameters
+   * @param sku the stock keeping unit of the product
+   * @param quantity the number of copies in stock
+   * @param price the selling price of the product
+   * @param title the tile of the product
+   * @param type the type of product (movie, book, toy)
+   * @param shippingCredit the shipping credit
+   * @param commission the commission
    */
-   public Product(int sku, int quantity, double price, String title, String type, 
- 		  double shippingCredit, double commission){
-     this.sku = sku;
-     this.quantity = quantity;
- 	this.price = price;
- 	this.title = title;
- 	this.type = type;
- 	this.shippingCredit = shippingCredit;
- 	this.commission = commission;
-   }
+  public Product(int sku, int quantity, double price, String title, String type, 
+    double shippingCredit, double commission){
+    this.sku = sku;
+    this.quantity = quantity;
+ 	  this.price = price;
+ 	  this.title = title;
+ 	  this.type = type;
+ 	  this.shippingCredit = shippingCredit;
+ 	  this.commission = commission;
+  }
+  
   /**
    * Returns the SKU of a product
    * @return the int SKU of a product
-   */
-   int getSku(){ return sku; }
+  */
+  int getSku(){ return sku; }
    
-   /**
-    * Returns the SKU of a product
-    * @return the int SKU of a product
-    */
-    double getPrice(){ return price; }
+  /**
+   * Returns the SKU of a product
+   * @return the int SKU of a product
+  */
+  double getPrice(){ return price; }
     
-    /**
-     * Returns the SKU of a product
-     * @return the int SKU of a product
-     */
-     double getShippingCredit(){ return shippingCredit; }
+  /**
+   * Returns the SKU of a product
+   * @return the int SKU of a product
+  */
+  double getShippingCredit(){ return shippingCredit; }
      
-     /**
-      * Returns the SKU of a product
-      * @return the int SKU of a product
-      */
-      double getCommission(){ return commission; }
+  /**
+   * Returns the SKU of a product
+   * @return the int SKU of a product
+  */
+  double getCommission(){ return commission; }
      
-    
-   /**
-    * Returns the quantity of a product
-    * @return the int SKU of a product
-    */
-    int getQuantity(){ return quantity; }
+  /**
+   * Returns the quantity of a product
+   * @return the int SKU of a product
+  */
+  int getQuantity(){ return quantity; }
    
-    /**
-     * Returns the SKU of a product
-     * @return the int SKU of a product
-     */
-     void setQuantity(int newQuantity){ quantity = newQuantity; }
+  /**
+   * Returns the SKU of a product
+   * @return the int SKU of a product
+  */
+  void setQuantity(int newQuantity){ quantity = newQuantity; }
 	  
   /**
-  * Returns a String of formatted product data
-  * @param none
-  * @return a string of the formatted data for table output
+   * Returns a String of formatted product data
+   * @param none
+   * @return a string of the formatted data for table output
   */
   public String display(){
     String output = this.type+ "	" + this.sku + "	" + this.quantity +
@@ -85,15 +89,12 @@ public class Product implements Serializable, Comparable<Product> {
   }
   
   public int compareTo(Product compareProduct) {
+  	int compareSku = ((Product) compareProduct).getSku(); 
 		
-		int compareSku = ((Product) compareProduct).getSku(); 
-		
-		//ascending order
-		return this.sku - compareSku;
-		
-		//descending order
-		//return compareQuantity - this.quantity;
-		
-	}	
-  
+	  //ascending order
+    return this.sku - compareSku;
+	
+   //descending order
+	//return compareQuantity - this.quantity;
+  }	 
 }
