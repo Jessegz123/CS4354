@@ -138,8 +138,9 @@ public class Inventory implements Serializable {
   }
   
   /**
-  * Processes sale of a certain product
+  * Processes sale of a certain product. Constructs a string
   * @param sku, quantity, shipping
+  * @return a string with all of the field values labeled
   */
   String ProcessSale( int sku, int quantity, double shippingC) {
     for(Product p : items){    //p declares a product object
