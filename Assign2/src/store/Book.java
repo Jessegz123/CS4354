@@ -24,4 +24,16 @@ public class Book extends Product {
     this.author = author;
 	  this.isbn = isbn;	
   }
+  
+  /**
+   * Returns a String of formatted product data
+   * @param none
+   * @return a string of the formatted data for product info
+  */
+  public String display(){
+  	super.display();
+    String output = super.display() + "Author: " +this.author + "\n" 
+      + "ISBN: " + this.isbn + "\n";
+    return output;
+  }  
 }

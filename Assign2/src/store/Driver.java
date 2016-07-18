@@ -83,7 +83,7 @@ public class Driver {
 	      
 	      else if(item.equals("B")){
 	        System.out.println ("Author: ");
-	        String author = input.next();
+	        String author = input.nextLine();
 	        System.out.println ("ISBN: ");
 	       	isbn = input.nextInt();	
 	       	if (inventory.validateProduct(sku, quantity, price))
@@ -118,6 +118,7 @@ public class Driver {
 	    System.out.print("Enter SKU to display: \n");
 	    sku = input.nextInt();		//declare SKU to pass as parameter
 	    inventory.displayProductInfo(sku);
+	    System.out.println("\n"); 
 	  }
 	  
 	  if (choice == 4) {

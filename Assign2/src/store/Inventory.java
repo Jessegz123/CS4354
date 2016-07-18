@@ -131,7 +131,7 @@ public class Inventory implements Serializable {
   void displayAllProducts(){
     Collections.sort(items);
     for(Product p : items){    //p declares a product object
-      String display=p.display();    //display is a holder for the string returned
+      String display=p.displayAll();    //display is a holder for the string returned
       System.out.println(display);    //from the display function
     }
     System.out.print("\n");
@@ -153,7 +153,7 @@ public class Inventory implements Serializable {
 	      String output =  "Total price: " + p.dfd.format(p.getPrice() * quantity) + " \n"
 	          + "Total shipping credit: " + p.dfd.format(p.getShippingCredit() * quantity) + "\n" 
 	          +  "Total commission: " + p.dfd.format(p.getCommission() * quantity) +"\n" +
-	          "Profit: "+ ((p.getPrice() * quantity)+(p.getShippingCredit() * quantity)
+	          "Profit: "+ p.dfd.format((p.getPrice() * quantity)+(p.getShippingCredit() * quantity)
 	        		  -((p.getCommission() * quantity)+ shippingC ));
 	      return output;
 	    }

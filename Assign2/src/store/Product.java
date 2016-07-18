@@ -29,7 +29,7 @@ public class Product implements Serializable, Comparable<Product> {
    * @param type the type of product (movie, book, toy)
    * @param shippingCredit the shipping credit
    * @param commission the commission
-   */
+  */
   public Product(int sku, int quantity, double price, String title, String type, 
     double shippingCredit, double commission){
     this.sku = sku;
@@ -76,13 +76,26 @@ public class Product implements Serializable, Comparable<Product> {
    * @return the int SKU of a product
   */
   void setQuantity(int newQuantity){ quantity = newQuantity; }
-	  
+	 
+  /**
+   * Returns a String of formatted product data
+   * @param none
+   * @return a string of the formatted data for product info
+  */
+  public String display(){
+    String output = "SKU: " +this.sku + "\n" 
+      + "Quantity: " + this.quantity + "\n"
+      + "Price: " + dfd.format(price) + "\n"
+      + "Title: " + this.title + "\n";    		 
+    return output;
+  }  
+  
   /**
    * Returns a String of formatted product data
    * @param none
    * @return a string of the formatted data for table output
   */
-  public String display(){
+  public String displayAll(){
     String output = this.type+ "	" + this.sku + "	" + this.quantity +
       "	  " + dfd.format(price) + "    "+this.title;    		 
     return output;

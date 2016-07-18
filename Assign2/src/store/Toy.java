@@ -21,4 +21,15 @@ public class Toy extends Product {
   	super(sku, quantity, price, title, "Toy",(4.49 + (.5 * (weight / 16))), 0.15);
 	  this.weight = weight;
   }
+  
+  /**
+   * Returns a String of formatted product data
+   * @param none
+   * @return a string of the formatted data for product info
+  */
+  public String display(){
+  	super.display();
+    String output = super.display() + "Weight: " + this.weight + "\n";
+    return output;
+  }  
 }

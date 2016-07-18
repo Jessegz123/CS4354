@@ -21,5 +21,16 @@ public class Movie extends Product{
     super(sku, quantity, price, title, "Movie",  2.98, 0.12);
     this.upc = upc;
   }
+  
+  /**
+   * Returns a String of formatted product data
+   * @param none
+   * @return a string of the formatted data for product info
+  */
+  public String display(){
+  	super.display();
+    String output = super.display() + "UPC: " + this.upc + "\n";
+    return output;
+  } 
 }
   
