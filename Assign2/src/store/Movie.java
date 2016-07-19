@@ -18,7 +18,7 @@ public class Movie extends Product{
    * @param upc the universal product code
    */
   public Movie(int sku, int quantity, double price, String title, int upc) {
-    super(sku, quantity, price, title, "Movie",  2.98, 0.12);
+    super(sku, quantity, price, title, "Movie",  2.98, (0.12 * price));
     this.upc = upc;
   }
   

@@ -20,7 +20,7 @@ public class Toy extends Product {
    * @param weight the toal weight of the toy in oz
   */
   public Toy(int sku, int quantity, double price, String title, double weight) {
-  	super(sku, quantity, price, title, "Toy",(4.49 + (.5 * (weight / 16))), 0.15);
+  	super(sku, quantity, price, title, "Toy",(4.49 + (.5 * (weight / 16))), (0.15 * price));
 	  this.weight = (double) Math.round(weight * 100) / 100;;
   }
   

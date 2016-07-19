@@ -22,7 +22,7 @@ public class Book extends Product {
    * @param isbn international standard book number
   */
   public Book(int sku, int quantity, double price, String title, String author, int isbn) {
-    super(sku, quantity, price, title, "Book", 3.99, 0.15);
+    super(sku, quantity, price, title, "Book", 3.99, (0.15 * price));
     this.author = author;
 	  this.isbn = isbn;	
   }
