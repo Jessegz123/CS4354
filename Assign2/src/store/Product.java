@@ -2,6 +2,7 @@ package store;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.*;
 
 /**
  * Super-Class representing a product in an inventory
@@ -101,13 +102,14 @@ public class Product implements Serializable, Comparable<Product> {
     return output;
   }
   
-  public int compareTo(Product compareProduct) {
-  	int compareSku = ((Product) compareProduct).getSku(); 
-		
-	  //ascending order
-    return this.sku - compareSku;
-	
-   //descending order
-	//return compareQuantity - this.quantity;
-  }	 
+  /**
+   * Returns a compares sku to order them
+   * @param none
+   * @return returns a negative number if t should come before rhs, 
+   * zero if the objects are equal, and a positive number otherwise
+  */
+  public int compareTo(Product rhs) {
+  	Integer t = this.sku;
+  	return t.compareTo(rhs.sku);
+  }
 }

@@ -117,8 +117,8 @@ public class Driver {
 	    //Scanner input = new Scanner (System.in);
 	    System.out.print("Enter SKU to display: \n");
 	    sku = input.nextInt();		//declare SKU to pass as parameter
-	    inventory.displayProductInfo(sku);
 	    System.out.println("\n"); 
+	    inventory.displayProductInfo(sku);
 	  }
 	  
 	  if (choice == 4) {
