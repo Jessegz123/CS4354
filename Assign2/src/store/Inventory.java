@@ -53,16 +53,19 @@ public class Inventory implements Serializable {
    * @param sku of the product being validated
    * @param quantity quantity of the product trying to ordered
    * @param price price of the product 
-   * @return returns true if the items meets all the necessary criteria
-   * price > 0, quantity > 0, and sku is original 
+   * @return returns 0 if the items meets all the necessary criteria
+   * -1 if the sku already exists in the inventory, or -2 if the
+   * quantity or price are less then 0
+   * 
   */
-  boolean validateProduct(int sku, int quantity, double price) {
+  int validateProduct(int sku, int quantity, double price) {
   	for (Product m : items){		//p declares a product object
-  		if (sku == m.getSku() || quantity < 0 || price < 0 ) {
-  		  return false;
-  		}
+  		if (sku == m.getSku())
+  		  return -1;
+  		if (quantity < 0 || price < 0 )
+    		return -2;
   	}
-  	return true;
+  	return 0;
   }
   
   /**

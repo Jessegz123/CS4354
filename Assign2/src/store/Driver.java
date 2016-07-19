@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class Driver {
  
 	/**
-  * Creates a new product inventory
+   * Creates a new product inventory
   */
   public static void main (String [] args) { 
   	Inventory inventory = new Inventory();
@@ -71,10 +71,12 @@ public class Driver {
 	        if(item.equals("M") || item.equals("m")){
 	      	  System.out.println ("UPC: ");
 	          upc = input.nextInt();
-	          if (inventory.validateProduct(sku, quantity, price))
+	          if (inventory.validateProduct(sku, quantity, price) == 0)
 	        	  inventory.addMovie(sku, quantity, price, title, upc);
-	          else 
-	        	  System.out.println("Invalid input.");
+	          if (inventory.validateProduct(sku, quantity, price) == -1)
+	        	  System.out.println("Unable to add, SKU is not unique.");
+	          if (inventory.validateProduct(sku, quantity, price) == -2)
+	            System.out.println("Unable to add, price or quantity are less then 0.");
 	        }	
 	      
 	        else if(item.equals("B") || item.equals("b")){
@@ -82,19 +84,23 @@ public class Driver {
 	          String author = input.nextLine();
 	          System.out.println ("ISBN: ");
 	       	  isbn = input.nextInt();	
-	       	  if (inventory.validateProduct(sku, quantity, price))
+	       	  if (inventory.validateProduct(sku, quantity, price) == 0)
 	       		  inventory.addBook(sku, quantity, price, title, author, isbn);
-	       	  else 
-		          System.out.println("Invalid input.");
+	       	  if (inventory.validateProduct(sku, quantity, price) == -1)
+	        	  System.out.println("Unable to add, SKU is not unique.");
+	          if (inventory.validateProduct(sku, quantity, price) == -2)
+	            System.out.println("Unable to add, price or quantity are less then 0.");
 	        }
 	      
 	        else if(item.equals("T") || item.equals("t")){
 	      	  System.out.println ("Weight: ");
 	      	  weight = input.nextDouble();
-	      	  if (inventory.validateProduct(sku, quantity, price))
+	      	  if (inventory.validateProduct(sku, quantity, price) == 0)
 	      		  inventory.addToy(sku, quantity, price, title, weight);	
-	      	  else 
-		          System.out.println("Invalid input.");
+	      	  if (inventory.validateProduct(sku, quantity, price) == -1)
+	        	  System.out.println("Unable to add, SKU is not unique.");
+	          if (inventory.validateProduct(sku, quantity, price) == -2)
+	            System.out.println("Unable to add, price or quantity are less then 0.");
 	        }
 	      }
 	      else{
