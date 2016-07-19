@@ -13,8 +13,7 @@ import java.util.*;
 */
 
 public class Inventory implements Serializable {
-  
-	private  ArrayList<Product> items = new ArrayList<Product>(); // inventory
+  private  ArrayList<Product> items = new ArrayList<Product>(); // inventory
 
   /**
    * Default constructor, creates an empty inventory
@@ -23,11 +22,11 @@ public class Inventory implements Serializable {
   
     try {
       FileInputStream fin = new FileInputStream("inventory.dat");
-	  ObjectInputStream ois = new ObjectInputStream(fin);
-	  items = (ArrayList<Product>)ois.readObject(); 
-	  fin.close();
+	    ObjectInputStream ois = new ObjectInputStream(fin);
+	    items = (ArrayList<Product>)ois.readObject(); 
+	    fin.close();
     } catch (FileNotFoundException e) {
-	  System.out.println("Cannot find datafile.");
+	    System.out.println("Cannot find datafile.");
     } catch (IOException e) {
       System.out.println("Problem with file input.");
     } catch (ClassNotFoundException e) {
@@ -40,25 +39,27 @@ public class Inventory implements Serializable {
   */
   void writeToFile(){
     try{
-	  FileOutputStream fout = new FileOutputStream("inventory.dat");
-	  ObjectOutputStream oout = new ObjectOutputStream(fout);
-	  oout.writeObject(items);
-	  oout.close();
-	}catch (IOException e){
-	  System.out.println("Problem with file output");
+	    FileOutputStream fout = new FileOutputStream("inventory.dat");
+	    ObjectOutputStream oout = new ObjectOutputStream(fout);
+	    oout.writeObject(items);
+	    oout.close();
+	  } catch (IOException e){
+	    System.out.println("Problem with file output");
     }
   }
   
   /**
    * Validates the product
-  * @param information about the movie, sku, quantity, price and title
-  * @return returns true if the items meets all the necessary criteria
-  * price > 0, quantity > 0, and sku is original 
+   * @param sku of the product being validated
+   * @param quantity quantity of the product trying to ordered
+   * @param price price of the product 
+   * @return returns true if the items meets all the necessary criteria
+   * price > 0, quantity > 0, and sku is original 
   */
   boolean validateProduct(int sku, int quantity, double price) {
   	for (Product m : items){		//p declares a product object
   		if (sku == m.getSku() || quantity < 0 || price < 0 ) {
-  			return false;
+  		  return false;
   		}
   	}
   	return true;
@@ -66,7 +67,11 @@ public class Inventory implements Serializable {
   
   /**
    * Adds a movie to the Inventory
-  * @param information about the movie, sku, quanity, price and title
+   * @param sku sku of the movie being added to the inventory
+   * @param quantity number of the movie being added to the inventory
+   * @param price price of the movie being added to the inventory
+   * @param title title of the movie being added to the inventory
+   * @param upc upc of the movie being added to the inventory
   */
   void addMovie(int sku, int quantity, double price, String title, int upc) {
   	Movie newProduct = new Movie(sku, quantity, price, title, upc);
@@ -75,8 +80,13 @@ public class Inventory implements Serializable {
   }
   
   /**
-  * Adds a book to the Inventory
-  * @param information about the book: sku, quantity, price, title, author, isbn
+   * Adds a book to the Inventory
+   * @param sku sku of the book being added to the inventory
+   * @param quantity number of the book being added to the inventory
+   * @param price price of the book being added to the inventory
+   * @param title title of the book being added to the inventory
+   * @param author author of the book being added to the inventory
+   * @param isbn isbn of the book being added to the inventory
   */
   void addBook(int sku, int quantity, double price, String title, String author, int isbn) {
   	Book newProduct = new Book(sku, quantity, price, title, author, isbn);
@@ -84,10 +94,13 @@ public class Inventory implements Serializable {
   	System.out.print("\n");
   }
    
-   /**
+  /**
    * Adds a toy to the Inventory
-   * @param information about the book: sku, quantity, price, title, and weight
-   */
+   * @param sku sku of the toy being added to the inventory
+   * @param quantity number of toys being added to the inventory
+   * @param price price of the toy being added to the inventory
+   * @param title name of the book being added to the inventory
+  */
   void addToy(int sku, int quantity, double price, String title,  double weight) {
   	Toy newProduct = new Toy(sku, quantity, price, title, weight);
   	items.add(newProduct);
@@ -96,7 +109,7 @@ public class Inventory implements Serializable {
   
   /**
    * Removes a product from the Inventory
-   * @param sku to be removed
+   * @param removeSku sku of the product to be removed
   */
   void removeProduct(int removeSku) {
   	for(Product p : items){		//p declares a product object
@@ -110,8 +123,8 @@ public class Inventory implements Serializable {
   }
 		
   /**
-  * Displays a product selected by SKU input by the user
-  * @param the SKU of the selected product
+   * Displays a product selected by SKU input by the user
+   * @param displaySku the sku of the product to be displayed
   */
   void displayProductInfo(int displaySku){
     for(Product p : items){    //p declares a product object
@@ -123,10 +136,10 @@ public class Inventory implements Serializable {
     }
     System.out.print("No product found with this SKU\n");
     System.out.print("\n");
-  }
+  } 
 	
   /**
-  * Displays all the products in the Inventory
+   * Displays all the products in the Inventory
   */
   void displayAllProducts(){
     Collections.sort(items);
@@ -138,9 +151,11 @@ public class Inventory implements Serializable {
   }
   
   /**
-  * Processes sale of a certain product. Constructs a string
-  * @param sku, quantity, shipping
-  * @return a string with all of the field values labeled
+   * Processes sale of a certain product. Constructs a string
+   * @param sku of the product being processed
+   * @param quantity of the products purchased
+   * @param shipping shipping cost used my store
+   * @return a string with all of the field values labeled
   */
   String ProcessSale( int sku, int quantity, double shippingC) {
     for(Product p : items){    //p declares a product object
@@ -151,10 +166,10 @@ public class Inventory implements Serializable {
 	      int newQuantity = p.getQuantity() - quantity;
 	      p.setQuantity(newQuantity);
 	      String output =  "Total price: " + p.dfd.format(p.getPrice() * quantity) + " \n"
-	          + "Total shipping credit: " + p.dfd.format(p.getShippingCredit() * quantity) + "\n" 
-	          +  "Total commission: " + p.dfd.format(p.getCommission() * quantity) +"\n" +
-	          "Profit: "+ p.dfd.format((p.getPrice() * quantity)+(p.getShippingCredit() * quantity)
-	        		  -((p.getCommission() * quantity)+ shippingC ));
+	        + "Total shipping credit: " + p.dfd.format(p.getShippingCredit() * quantity) + "\n" 
+	        + "Total commission: " + p.dfd.format(p.getCommission() * quantity) + "\n" 
+	        + "Profit: "+ p.dfd.format((p.getPrice() * quantity)+(p.getShippingCredit() * quantity)
+	        - ((p.getCommission() * quantity)+ shippingC ));
 	      return output;
 	    }
 	  }

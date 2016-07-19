@@ -24,7 +24,6 @@ public class Movie extends Product{
   
   /**
    * Returns a String of formatted product data
-   * @param none
    * @return a string of the formatted data for product info
   */
   public String display(){

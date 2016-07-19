@@ -16,7 +16,7 @@ public class Toy extends Product {
    * @param price the selling price of the toy
    * @param title the name of the toy
    * @param weight the toal weight of the toy in oz
-   */
+  */
   public Toy(int sku, int quantity, double price, String title, double weight) {
   	super(sku, quantity, price, title, "Toy",(4.49 + (.5 * (weight / 16))), 0.15);
 	  this.weight = weight;
@@ -24,7 +24,6 @@ public class Toy extends Product {
   
   /**
    * Returns a String of formatted product data
-   * @param none
    * @return a string of the formatted data for product info
   */
   public String display(){

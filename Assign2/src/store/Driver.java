@@ -20,17 +20,11 @@ import java.util.Scanner;
 
 public class Driver {
  
-  /**
+	/**
   * Creates a new product inventory
   */
- // private static Inventory inventory = new Inventory();
-
-  public static void main (String [] args) {
-  	Inventory inventory;
-  	
-  	
-  	 
-  	inventory = new Inventory();
+  public static void main (String [] args) { 
+  	Inventory inventory = new Inventory();
   	int sku; // sku of product to add/ remove/ search
   	int quantity; // quantity of product to add
   	double price; // price of product to add
@@ -51,96 +45,98 @@ public class Driver {
 	    System.out.print("6. Quit \n\n");
 	    System.out.print("Enter your choice: \n");
 	   
-	  choice = input.nextInt();
-	  input.nextLine();
+      choice = input.nextInt();
+	    input.nextLine();
 	  
-	  if (choice == 1) {
-	    System.out.println("Add a Product (Enter M for Movie, B for book, or T for Toy: )");
-	    String item = input.next();
+	    if (choice == 1) {
+	      System.out.println("Add a Product (Enter M for Movie, B for book, or T for Toy: )");
+	      String item = input.next();
 	    
-	    if (item.equals("M") ||item.equals("B") ||item.equals("T")){
-	    	System.out.println("SKU:");
-	      sku = input.nextInt();			//declare SKU
+	      if (item.equals("M") || item.equals("B") || item.equals("T")
+	      	  || item.equals("m") || item.equals("b") || item.equals("t")){
+	      	
+	    	  System.out.println("SKU:");
+	        sku = input.nextInt();			//declare SKU
         
-	      System.out.println ("Quantity");
-        quantity= input.nextInt();		//declare quantity
+	        System.out.println ("Quantity");
+          quantity= input.nextInt();		//declare quantity
 	      
-        System.out.print ("Price: \n");
-	      price = input.nextDouble();  //declare price
-	      input.nextLine();
+          System.out.print ("Price: \n");
+	        price = input.nextDouble();  //declare price
+	        input.nextLine();
 	      
-	      System.out.println ("Title: ");
-	      title = input.nextLine();	//declare title
+	        System.out.println ("Title: ");
+	        title = input.nextLine();	//declare title
 	       	
-	      if(item.equals("M")){
-	      	System.out.println ("UPC: ");
-	        upc = input.nextInt();
-	        if (inventory.validateProduct(sku, quantity, price))
-	        	inventory.addMovie(sku, quantity, price, title, upc);
-	        else 
-	        	System.out.println("Invalid input.");
-	      }	
+	        if(item.equals("M") || item.equals("m")){
+	      	  System.out.println ("UPC: ");
+	          upc = input.nextInt();
+	          if (inventory.validateProduct(sku, quantity, price))
+	        	  inventory.addMovie(sku, quantity, price, title, upc);
+	          else 
+	        	  System.out.println("Invalid input.");
+	        }	
 	      
-	      else if(item.equals("B")){
-	        System.out.println ("Author: ");
-	        String author = input.nextLine();
-	        System.out.println ("ISBN: ");
-	       	isbn = input.nextInt();	
-	       	if (inventory.validateProduct(sku, quantity, price))
-	       		inventory.addBook(sku, quantity, price, title, author, isbn);
-	       	else 
-		        System.out.println("Invalid input.");
+	        else if(item.equals("B") || item.equals("b")){
+	          System.out.println ("Author: ");
+	          String author = input.nextLine();
+	          System.out.println ("ISBN: ");
+	       	  isbn = input.nextInt();	
+	       	  if (inventory.validateProduct(sku, quantity, price))
+	       		  inventory.addBook(sku, quantity, price, title, author, isbn);
+	       	  else 
+		          System.out.println("Invalid input.");
+	        }
+	      
+	        else if(item.equals("T") || item.equals("t")){
+	      	  System.out.println ("Weight: ");
+	      	  weight = input.nextDouble();
+	      	  if (inventory.validateProduct(sku, quantity, price))
+	      		  inventory.addToy(sku, quantity, price, title, weight);	
+	      	  else 
+		          System.out.println("Invalid input.");
+	        }
 	      }
-	      
-	      else if(item.equals("T")){
-	      	System.out.println ("Weight: ");
-	      	weight = input.nextDouble();
-	      	if (inventory.validateProduct(sku, quantity, price))
-	      		inventory.addToy(sku, quantity, price, title, weight);	
-	      	else 
-		        System.out.println("Invalid input.");
+	      else{
+	    	  System.out.println("Invalid entry");
 	      }
 	    }
-	    else{
-	    	System.out.println("Invalid entry");
-	    }
-	  }
       
-    if (choice == 2) {
-    	//Scanner input = new Scanner (System.in);
-      System.out.print("Enter SKU to remove: \n");
-	    sku = input.nextInt();	//declare SKU to pass as parameter
-	    inventory.removeProduct(sku);
-    }
+      if (choice == 2) {
+    	  //Scanner input = new Scanner (System.in);
+        System.out.print("Enter SKU to remove: \n");
+	      sku = input.nextInt();	//declare SKU to pass as parameter
+	      inventory.removeProduct(sku);
+      }
     
-	  if (choice == 3) {
-	    //Scanner input = new Scanner (System.in);
-	    System.out.print("Enter SKU to display: \n");
-	    sku = input.nextInt();		//declare SKU to pass as parameter
-	    System.out.println("\n"); 
-	    inventory.displayProductInfo(sku);
-	  }
+	    if (choice == 3) {
+	      //Scanner input = new Scanner (System.in);
+	      System.out.print("Enter SKU to display: \n");
+	      sku = input.nextInt();		//declare SKU to pass as parameter
+	      System.out.println("\n"); 
+	      inventory.displayProductInfo(sku);
+	    }
 	  
-	  if (choice == 4) {
-	    inventory.displayAllProducts();
-	  }
+	    if (choice == 4) {
+	      inventory.displayAllProducts();
+	    }
 	  
-	  if (choice == 5) {
-	    System.out.println("SKU:");
-	    sku = input.nextInt();			//declare SKU
-	    System.out.println ("Quantity");
-	    quantity = input.nextInt();		//declare quantity
-	    System.out.println ("Shipping Cost");
-	    shippingCost = input.nextDouble();		//declare quantity
+	    if (choice == 5) {
+	      System.out.println("SKU:");
+	      sku = input.nextInt();			//declare SKU
+	      System.out.println ("Quantity");
+	      quantity = input.nextInt();		//declare quantity
+	      System.out.println ("Shipping Cost");
+	      shippingCost = input.nextDouble();		//declare quantity
 	    
-	    System.out.println (inventory.ProcessSale(sku, quantity, shippingCost));
-	  }
+	      System.out.println (inventory.ProcessSale(sku, quantity, shippingCost));
+	    }
 	  
-	  if (choice > 6 || choice < 1) 
-	  	System.out.println ("Invalid option");
+	    if (choice > 6 || choice < 1) 
+	  	  System.out.println ("Invalid option");
 	  
     } while (choice != 6);
-
+    
     inventory.writeToFile();
     System.out.print("Program Ended");
   }	

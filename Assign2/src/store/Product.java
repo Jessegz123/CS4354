@@ -80,7 +80,6 @@ public class Product implements Serializable, Comparable<Product> {
 	 
   /**
    * Returns a String of formatted product data
-   * @param none
    * @return a string of the formatted data for product info
   */
   public String display(){
@@ -93,7 +92,6 @@ public class Product implements Serializable, Comparable<Product> {
   
   /**
    * Returns a String of formatted product data
-   * @param none
    * @return a string of the formatted data for table output
   */
   public String displayAll(){
@@ -104,7 +102,6 @@ public class Product implements Serializable, Comparable<Product> {
   
   /**
    * Returns a compares sku to order them
-   * @param none
    * @return returns a negative number if t should come before rhs, 
    * zero if the objects are equal, and a positive number otherwise
   */
