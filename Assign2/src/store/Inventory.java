@@ -13,7 +13,7 @@ import java.util.*;
 */
 
 public class Inventory implements Serializable {
-  private  ArrayList<Product> items = new ArrayList<Product>(); // inventory
+  ArrayList<Product> items = new ArrayList<Product>(); // inventory
 
   /**
    * Default constructor, creates an empty inventory
@@ -67,48 +67,6 @@ public class Inventory implements Serializable {
   	}
   	return 0;
   }
-  
-  /**
-   * Adds a movie to the Inventory
-   * @param sku sku of the movie being added to the inventory
-   * @param quantity number of the movie being added to the inventory
-   * @param price price of the movie being added to the inventory
-   * @param title title of the movie being added to the inventory
-   * @param upc upc of the movie being added to the inventory
-  */
-  void addMovie(int sku, int quantity, double price, String title, int upc) {
-  	Movie newProduct = new Movie(sku, quantity, price, title, upc);
-  	items.add(newProduct);
-  	System.out.print("\n");
-  }
-  
-  /**
-   * Adds a book to the Inventory
-   * @param sku sku of the book being added to the inventory
-   * @param quantity number of the book being added to the inventory
-   * @param price price of the book being added to the inventory
-   * @param title title of the book being added to the inventory
-   * @param author author of the book being added to the inventory
-   * @param isbn isbn of the book being added to the inventory
-  */
-  void addBook(int sku, int quantity, double price, String title, String author, int isbn) {
-  	Book newProduct = new Book(sku, quantity, price, title, author, isbn);
-  	items.add(newProduct);
-  	System.out.print("\n");
-  }
-   
-  /**
-   * Adds a toy to the Inventory
-   * @param sku sku of the toy being added to the inventory
-   * @param quantity number of toys being added to the inventory
-   * @param price price of the toy being added to the inventory
-   * @param title name of the book being added to the inventory
-  */
-  void addToy(int sku, int quantity, double price, String title,  double weight) {
-  	Toy newProduct = new Toy(sku, quantity, price, title, weight);
-  	items.add(newProduct);
-  	System.out.print("\n");
-   }
   
   /**
    * Removes a product from the Inventory

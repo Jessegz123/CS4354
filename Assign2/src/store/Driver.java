@@ -71,11 +71,15 @@ public class Driver {
 	        if(item.equals("M") || item.equals("m")){
 	      	  System.out.println ("UPC: ");
 	          upc = input.nextInt();
-	          if (inventory.validateProduct(sku, quantity, price) == 0)
-	        	  inventory.addMovie(sku, quantity, price, title, upc);
-	          if (inventory.validateProduct(sku, quantity, price) == -1)
+	          // Add movie to inventory
+	          if (inventory.validateProduct(sku, quantity, price) == 0){
+	        	  Movie newProduct = new Movie(sku, quantity, price, title, upc);
+		          inventory.items.add(newProduct);
+	          }
+	          // Errors adding movie to inventory
+	          else if (inventory.validateProduct(sku, quantity, price) == -1)
 	        	  System.out.println("Unable to add, SKU is not unique.");
-	          if (inventory.validateProduct(sku, quantity, price) == -2)
+	          else if (inventory.validateProduct(sku, quantity, price) == -2)
 	            System.out.println("Unable to add, price or quantity are less then 0.");
 	        }	
 	      
@@ -84,22 +88,30 @@ public class Driver {
 	          String author = input.nextLine();
 	          System.out.println ("ISBN: ");
 	       	  isbn = input.nextInt();	
-	       	  if (inventory.validateProduct(sku, quantity, price) == 0)
-	       		  inventory.addBook(sku, quantity, price, title, author, isbn);
-	       	  if (inventory.validateProduct(sku, quantity, price) == -1)
+	       	  // Add book to inventory
+	       	  if (inventory.validateProduct(sku, quantity, price) == 0) {
+	       	  	Book newProduct = new Book(sku, quantity, price, title, author, isbn);
+	        	  inventory.items.add(newProduct);
+	       	  }
+	       	  // Errors adding book to inventory
+	       	  else if (inventory.validateProduct(sku, quantity, price) == -1)
 	        	  System.out.println("Unable to add, SKU is not unique.");
-	          if (inventory.validateProduct(sku, quantity, price) == -2)
+	       	  else if (inventory.validateProduct(sku, quantity, price) == -2)
 	            System.out.println("Unable to add, price or quantity are less then 0.");
 	        }
 	      
 	        else if(item.equals("T") || item.equals("t")){
 	      	  System.out.println ("Weight: ");
 	      	  weight = input.nextDouble();
-	      	  if (inventory.validateProduct(sku, quantity, price) == 0)
-	      		  inventory.addToy(sku, quantity, price, title, weight);	
-	      	  if (inventory.validateProduct(sku, quantity, price) == -1)
+	      	  // Add toy to inventory
+	      	  if (inventory.validateProduct(sku, quantity, price) == 0) {
+	      	  	Toy newProduct = new Toy(sku, quantity, price, title, weight);
+	      	  	inventory.items.add(newProduct);
+	      	  }
+	      	  // Errors adding book to inventory
+	      	  else if (inventory.validateProduct(sku, quantity, price) == -1)
 	        	  System.out.println("Unable to add, SKU is not unique.");
-	          if (inventory.validateProduct(sku, quantity, price) == -2)
+	      	  else if (inventory.validateProduct(sku, quantity, price) == -2)
 	            System.out.println("Unable to add, price or quantity are less then 0.");
 	        }
 	      }
@@ -109,14 +121,12 @@ public class Driver {
 	    }
       
       if (choice == 2) {
-    	  //Scanner input = new Scanner (System.in);
         System.out.print("Enter SKU to remove: \n");
 	      sku = input.nextInt();	//declare SKU to pass as parameter
 	      inventory.removeProduct(sku);
       }
     
 	    if (choice == 3) {
-	      //Scanner input = new Scanner (System.in);
 	      System.out.print("Enter SKU to display: \n");
 	      sku = input.nextInt();		//declare SKU to pass as parameter
 	      System.out.println("\n"); 
