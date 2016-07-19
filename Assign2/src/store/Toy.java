@@ -1,5 +1,7 @@
 package store;
 
+import java.text.DecimalFormat;
+
 /**
  * Sub-Class representing a toy in an inventory
  * Stores the total weight in oz.
@@ -19,7 +21,7 @@ public class Toy extends Product {
   */
   public Toy(int sku, int quantity, double price, String title, double weight) {
   	super(sku, quantity, price, title, "Toy",(4.49 + (.5 * (weight / 16))), 0.15);
-	  this.weight = weight;
+	  this.weight = (double) Math.round(weight * 100) / 100;;
   }
   
   /**
@@ -27,8 +29,9 @@ public class Toy extends Product {
    * @return a string of the formatted data for product info
   */
   public String display(){
+  	DecimalFormat dft = new DecimalFormat("#0");
   	super.display();
-    String output = super.display() + "Weight: " + this.weight + "\n";
+    String output = super.display() + "Weight: " + dft.format(this.weight) + "\n";
     return output;
   }  
 }
