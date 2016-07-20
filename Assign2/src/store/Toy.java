@@ -21,7 +21,7 @@ public class Toy extends Product {
    * @param weight the toal weight of the toy in oz
   */
   public Toy(int sku, int quantity, double price, String title,
-		  double weight) {
+	    double weight) {
   	super(sku, quantity, price, title, (4.49 + (.5 *
   			(Math.ceil(weight / 16.0)))), (0.15 * price));
 
@@ -32,7 +32,7 @@ public class Toy extends Product {
    * @return a string of the formatted data for table output
   */
   public String displayAll(){
-    String output = "Toy   " + super.displayAll();
+    String output = String.format("%-5s ", "Toy")  + super.displayAll();
     return output;
   }
   
@@ -44,7 +44,7 @@ public class Toy extends Product {
   	DecimalFormat dft = new DecimalFormat("#0");
   	super.display();
     String output = super.display() + "Weight: " + dft.format(this.weight) 
-    + "\n";
+      + "\n";
     return output;
   }  
 }

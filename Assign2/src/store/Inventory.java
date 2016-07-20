@@ -121,25 +121,29 @@ public class Inventory implements Serializable {
   */
   String ProcessSale( int sku, int quantity, double shippingC) {
     for(Product p : items){    //p declares a product object
-	  if(p.getSku() == sku){
-	    if (p.getQuantity() < quantity){
-	    	return "Quantity exceeds inventory";
-	    }
-	    else{
-	      int newQuantity = p.getQuantity() - quantity;
-	      p.setQuantity(newQuantity);
-	      String output =  "Total price: " + p.dfd.format(p.getPrice() *
-	      quantity) + " \n"+ "Total shipping credit: " +
-	      p.dfd.format(p.getShippingCredit()* quantity) + "\n" + 
-	      "Total commission: " + p.dfd.format(p.getCommission()
-	      * quantity) + "\n"  + "Profit: "+ p.dfd.format((p.getPrice()
-	      * quantity)+(p.getShippingCredit() * quantity) - 
-	      ((p.getCommission() * quantity)+ shippingC ));
-	      return output;
-	    }
+      if(p.getSku() == sku){
+	      if (p.getQuantity() < quantity){
+	    	  return "Quantity exceeds inventory";
+	      }
+	      else{
+	        int newQuantity = p.getQuantity() - quantity;
+	        p.setQuantity(newQuantity);
+	        String output = String.format("%1s %16s %1s %5s %1s %10s %1s %21s", 
+	          "Total price: ", p.dfd.format(p.getPrice() *
+	            quantity), 
+	          "\nTotal shipping credit: ", p.dfd.format(p.getShippingCredit()
+	            * quantity),
+	          "\nTotal commission: ", p.dfd.format(p.getCommission()
+	            * quantity), 
+	          "\nProfit: ", p.dfd.format((p.getPrice() * quantity) + 
+	            (p.getShippingCredit() * quantity) - 
+	            ((p.getCommission() * quantity)+ shippingC )));
+	        return output;
+	      }
 	    }
     }return null;
-}}
+  }
+}
   
 
   

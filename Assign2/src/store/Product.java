@@ -31,7 +31,7 @@ public class Product implements Serializable, Comparable<Product> {
    * @param commission the commission
   */
   public Product(int sku, int quantity, double price, String title,
-		  double shippingCredit, double commission){
+		     double shippingCredit, double commission){
     this.sku = sku;
     this.quantity = quantity;
  	  this.price = price;
@@ -93,7 +93,7 @@ public class Product implements Serializable, Comparable<Product> {
    * @return a string of the formatted data for table output
   */
   public String displayAll(){
-    String output = String.format("%6s %5d %8s %-20s", 
+    String output = String.format("%6d %6d %8s %-20s", 
       this.sku, this.quantity,  dfd.format(price), this.title);    		 
     return output;
   }

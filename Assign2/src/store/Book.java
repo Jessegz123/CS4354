@@ -33,7 +33,7 @@ public class Book extends Product {
    * @return a string of the formatted data for table output
   */
   public String displayAll(){
-    String output = "Book  " + super.displayAll();
+    String output = String.format("%-5s ", "Book") + super.displayAll();
     return output;
   }
   
