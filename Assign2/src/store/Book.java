@@ -23,9 +23,18 @@ public class Book extends Product {
   */
   public Book(int sku, int quantity, double price, String title, String author,
 		  int isbn) {
-    super(sku, quantity, price, title, "Book", 3.99, (0.15 * price));
+    super(sku, quantity, price, title, 3.99, (0.15 * price));
     this.author = author;
 	  this.isbn = isbn;	
+  }
+  
+  /**
+   * Returns a String of formatted product data
+   * @return a string of the formatted data for table output
+  */
+  public String displayAll(){
+    String output = "Book  " + super.displayAll();
+    return output;
   }
   
   /**
