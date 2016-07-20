@@ -16,7 +16,6 @@ public class Product implements Serializable, Comparable<Product> {
   private int quantity;		//hold the quantity of the product
   double price;		//hold the price of the product
   private String title; 	//hold the title of the product
-  private String type;       //declare whether a product is a book, movie, or toy
   private double shippingCredit;
   private double commission;
   DecimalFormat dfd = new DecimalFormat("$#0.00");
@@ -31,13 +30,12 @@ public class Product implements Serializable, Comparable<Product> {
    * @param shippingCredit the shipping credit
    * @param commission the commission
   */
-  public Product(int sku, int quantity, double price, String title, String type, 
+  public Product(int sku, int quantity, double price, String title, 
     double shippingCredit, double commission){
     this.sku = sku;
     this.quantity = quantity;
  	  this.price = price;
  	  this.title = title;
- 	  this.type = type;
  	  this.shippingCredit = shippingCredit;
  	  this.commission = commission;
   }
@@ -95,8 +93,8 @@ public class Product implements Serializable, Comparable<Product> {
    * @return a string of the formatted data for table output
   */
   public String displayAll(){
-    String output = this.type+ "	" + this.sku + "	" + this.quantity +
-      "	  " + dfd.format(price) + "    "+this.title;    		 
+    String output = String.format("%6s %5d %8s %-20s", 
+      this.sku, this.quantity,  dfd.format(price), this.title);    		 
     return output;
   }
   
