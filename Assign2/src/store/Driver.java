@@ -13,7 +13,8 @@ import java.util.Scanner;
  * Driver for the store inventory program.
  * inputs stored inventory from a file, offers users a menu of 6 options
  * add product, remove product, find product, display inventory, process 
- * a sale, and quit. When the users selects quit, the inventory is daved to a file.
+ * a sale, and quit. When the users selects quit, the inventory is saved 
+ * to a file.
  * @author Sarah Zsohar
  * @author Jesse Gonzalez
 */
@@ -49,7 +50,8 @@ public class Driver {
 	    input.nextLine();
 	  
 	    if (choice == 1) {
-	      System.out.println("Add a Product (Enter M for Movie, B for book, or T for Toy: )");
+	      System.out.println("Add a Product (Enter M for Movie, B for book,"
+	      		+ " or T for Toy: )");
 	      String item = input.next();
 	    
 	      if (item.equals("M") || item.equals("B") || item.equals("T")
@@ -73,14 +75,16 @@ public class Driver {
 	          upc = input.nextInt();
 	          // Add movie to inventory
 	          if (inventory.validateProduct(sku, quantity, price) == 0){
-	        	  Movie newProduct = new Movie(sku, quantity, price, title, upc);
+	        	  Movie newProduct = new Movie(sku, quantity, price, title,
+	        			  upc);
 		          inventory.items.add(newProduct);
 	          }
 	          // Errors adding movie to inventory
 	          else if (inventory.validateProduct(sku, quantity, price) == -1)
 	        	  System.out.println("Unable to add, SKU is not unique.");
 	          else if (inventory.validateProduct(sku, quantity, price) == -2)
-	            System.out.println("Unable to add, price or quantity are less then 0.");
+	            System.out.println("Unable to add, price or quantity are less "
+	            		+ "then 0.");
 	        }	
 	      
 	        else if(item.equals("B") || item.equals("b")){
@@ -97,7 +101,8 @@ public class Driver {
 	       	  else if (inventory.validateProduct(sku, quantity, price) == -1)
 	        	  System.out.println("Unable to add, SKU is not unique.");
 	       	  else if (inventory.validateProduct(sku, quantity, price) == -2)
-	            System.out.println("Unable to add, price or quantity are less then 0.");
+	            System.out.println("Unable to add, price or quantity are less"
+	            		+ " then 0.");
 	        }
 	      
 	        else if(item.equals("T") || item.equals("t")){
@@ -112,7 +117,8 @@ public class Driver {
 	      	  else if (inventory.validateProduct(sku, quantity, price) == -1)
 	        	  System.out.println("Unable to add, SKU is not unique.");
 	      	  else if (inventory.validateProduct(sku, quantity, price) == -2)
-	            System.out.println("Unable to add, price or quantity are less then 0.");
+	            System.out.println("Unable to add, price or quantity are "
+	            		+ "less then 0.");
 	        }
 	      }
 	      else{
@@ -138,15 +144,21 @@ public class Driver {
 	    }
 	  
 	    if (choice == 5) {
-	      System.out.println("SKU:");
-	      sku = input.nextInt();			//declare SKU
-	      System.out.println ("Quantity");
-	      quantity = input.nextInt();		//declare quantity
-	      System.out.println ("Shipping Cost");
-	      shippingCost = input.nextDouble();		//declare quantity
 	    
-	      System.out.println (inventory.ProcessSale(sku, quantity, shippingCost));
+	      System.out.println("SKU:");
+	      sku = input.nextInt(); //declare SKU
+	      if (inventory.validateProduct(sku, 1, 1.0) == -1){
+		      System.out.println ("Quantity");
+		      quantity = input.nextInt();		//declare quantity
+		      System.out.println ("Shipping Cost");
+		      shippingCost = input.nextDouble();		//declare quantity
+		    
+		      System.out.println (inventory.ProcessSale(sku, quantity,
+		    		  shippingCost));
+	      }
+	      else System.out.println("Unable find matching SKU \n");
 	    }
+ 
 	  
 	    if (choice > 6 || choice < 1) 
 	  	  System.out.println ("Invalid option");

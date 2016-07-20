@@ -5,9 +5,10 @@ import java.util.*;
 
 /**
  * Represents the inventory of the store
- * it provides methods to add a product to the inventory, remove a product from the
- * inventory (given the sku from the user), find and display a movie (given a sku 
- * from the user), and display all the products in the inventory.
+ * it provides methods to add a product to the inventory, remove 
+ * a product from theinventory (given the sku from the user), find and
+ * display a movie (given a sku from the user), and display all the 
+ * products in the inventory.
  * @author Sarah Zsohar
  * @author Jesse Gonzalez
 */
@@ -51,7 +52,7 @@ public class Inventory implements Serializable {
   /**
    * Validates the product
    * @param sku of the product being validated
-   * @param quantity quantity of the product trying to ordered
+   * @param quantity of the product trying to ordered
    * @param price price of the product 
    * @return returns 0 if the items meets all the necessary criteria
    * -1 if the sku already exists in the inventory, or -2 if the
@@ -121,21 +122,24 @@ public class Inventory implements Serializable {
   String ProcessSale( int sku, int quantity, double shippingC) {
     for(Product p : items){    //p declares a product object
 	  if(p.getSku() == sku){
-	    if (p.getQuantity() < quantity)
-	    	return "Error with purchase";
-	    else {
+	    if (p.getQuantity() < quantity){
+	    	return "Quantity exceeds inventory";
+	    }
+	    else{
 	      int newQuantity = p.getQuantity() - quantity;
 	      p.setQuantity(newQuantity);
-	      String output =  "Total price: " + p.dfd.format(p.getPrice() * quantity) + " \n"
-	        + "Total shipping credit: " + p.dfd.format(p.getShippingCredit() * quantity) + "\n" 
-	        + "Total commission: " + p.dfd.format(p.getCommission() * quantity) + "\n" 
-	        + "Profit: "+ p.dfd.format((p.getPrice() * quantity)+(p.getShippingCredit() * quantity)
-	        - ((p.getCommission() * quantity)+ shippingC ));
+	      String output =  "Total price: " + p.dfd.format(p.getPrice() *
+	      quantity) + " \n"+ "Total shipping credit: " +
+	      p.dfd.format(p.getShippingCredit()* quantity) + "\n" + 
+	      "Total commission: " + p.dfd.format(p.getCommission()
+	      * quantity) + "\n"  + "Profit: "+ p.dfd.format((p.getPrice()
+	      * quantity)+(p.getShippingCredit() * quantity) - 
+	      ((p.getCommission() * quantity)+ shippingC ));
 	      return output;
 	    }
-	  }
-	} 
-  return "Error occured";
-  }
-}
+	    }
+    }return null;
+}}
+  
+
   

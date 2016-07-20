@@ -18,17 +18,8 @@ public class Movie extends Product{
    * @param upc the universal product code
    */
   public Movie(int sku, int quantity, double price, String title, int upc) {
-    super(sku, quantity, price, title, 2.98, (0.12 * price));
+    super(sku, quantity, price, title, "Movie",  2.98, (0.12 * price));
     this.upc = upc;
-  }
-  
-  /**
-   * Returns a String of formatted product data
-   * @return a string of the formatted data for table output
-  */
-  public String displayAll(){
-    String output = "Movie " + super.displayAll();
-    return output;
   }
   
   /**
